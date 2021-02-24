@@ -8,6 +8,11 @@ const Specs = ({ specView }) => {
   const [premium, setPremium] = useState(20);
   const [selected, setSelected] = useState('standard');
   const [hover, setHover] = useState(0);
+  const [drawer, setDrawer] = useState(0);
+
+  const openDrawer = () => {
+    drawer === 0 ? setDrawer(45) : setDrawer(0);
+  }
 
   const topSpeed = useSpring({
     number: specView > 230 ? 124 : 0,
@@ -25,6 +30,7 @@ const Specs = ({ specView }) => {
   });
 
   return (
+    <div>
     <Container>
       <Title>TECHNICAL SPECIFICATIONS</Title>
       <Buttons>
@@ -84,9 +90,35 @@ const Specs = ({ specView }) => {
       <Plus
         onMouseEnter={() => setHover(-90)}
         onMouseLeave={() => setHover(0)}
-        style={{transform: `rotate(${hover}deg)`}}
+        onClick={() => openDrawer()}
+        style={{transform: `rotate(${hover + drawer}deg)`}}
       >+</Plus>
     </Container>
+    <Drawer style={drawer === 45 ? {display: 'flex'} : {display: 'none'}}>
+      <More>
+        <div style={{width: '30vw'}}>Range</div>
+        <Spec style={{marginRight: '1vw'}}>STANDARD</Spec>
+        <Spec style={{marginRight: '11vw'}}>PREMIUM</Spec>
+      </More>
+      <Columns>
+        <Col1>
+          <ColItem>City</ColItem>
+          <ColItem>Highway, 55 mph (89 km/h)</ColItem>
+          <ColItem>Highway, 70 mph (113 km/h)</ColItem>
+        </Col1>
+        <Col2>
+          <ColDet>161 miles (259 km)</ColDet>
+          <ColDet>99 miles (159 km)</ColDet>
+          <ColDet>82 miles (132 km)</ColDet>
+        </Col2>
+        <Col2>
+          <ColDet>161 miles (259 km)</ColDet>
+          <ColDet>99 miles (159 km)</ColDet>
+          <ColDet>82 miles (132 km)</ColDet>
+        </Col2>
+      </Columns>
+      </Drawer>
+    </div>
   )
 };
 
@@ -110,11 +142,39 @@ const Buttons = styled.div`
   width: 400px;
   font-size: 24px;
 `
+const Col1 = styled.div`
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+const Col2 = styled.div`
+  width: 15vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+const ColItem = styled.div`
+  margin-top: 15px;
+  color: rgb(100, 100, 100);
+  font-size: 16px;
+`
+const ColDet = styled.div`
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  margin-top: 10px;
+  font-size: 16px;
+`
 const Column = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 295px;
+`
+const Columns = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 70vw;
 `
 const Container = styled.div`
   font-family: 'Montserrat', sans-serif;
@@ -130,9 +190,27 @@ const Details = styled.div`
   color: rgb(150, 150, 150);
   margin-top: 3px;
 `
+const Drawer = styled.div`
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -90px;
+  height: 200px;
+  background: rgb(240, 240, 240);
+`
 const Line = styled.div`
   margin-top: 10px;
   transition: all 0.4s ease;
+`
+const More = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(100, 100, 100);
+  width: 70vw;
+  color: rgb(100, 100, 100);
 `
 const Other = styled.div`
   font-family: 'Oswald', sans-serif;
@@ -162,12 +240,22 @@ const Plus = styled.div`
 const Spec = styled.div`
   color: rgb(150, 150, 150);
   font-size: 15px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
 `
 const SpecContainer = styled.div`
   margin-top: 30px;
   width: 900px;
   display: flex;
   justify-content: space-between;
+`
+const Stats = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  width: 70vw;
+  color: rgb(100, 100, 100);
 `
 const Title = styled.div`
   font-size: 35px;
