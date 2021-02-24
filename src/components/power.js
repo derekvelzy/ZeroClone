@@ -1,27 +1,86 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { animated, useSpring } from "react-spring";
+import {Parallax, ParallaxLayer} from 'react-spring/renderprops-addons';
+
+const calc = (o) => `translateY(${o * 0.2}px)`;
 
 const Power = ({ closePower, power }) => {
+  // const ref = useRef();
+  // const [{offset}, set] = useSpring(() => ({ offset: 0 }));
+
+  // const handleScroll = () => {
+  //   console.log(document.getElementById('content').pageYOffset);
+  //   // const offset = -1 * ref.current.getBoundingClientRect().top;
+  //   // set({ offset });
+  // }
+
+  // useEffect(() => {
+  //   document.getElementById('content').addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     document.getElementById('content').removeEventListener("scroll", handleScroll);
+  //   }
+  // })
 
   return (
     <Container>
       <Overlay>
-        <Content>
-          <Close
-            onClick={() => closePower()}
-          >
-            +
-          </Close>
-          <div>me!</div>
-          <div style={{height: '9000px'}}>me!</div>
-          <div>h</div>
-        </Content>
+        <Close onClick={() => closePower()}>+</Close>
+        <Parallax pages={3} style={{width: '80vw'}}>
+          <Content>
+            <Battery>
+              <BatteryStats>
+                <BattTitle>ZF14.4 BATTERY PACK</BattTitle>
+                <BattDesc>
+                  The ZF14.4 lithium-ion battery makes the SR/F capable of a 200-mile maximum range.* The battery’s industry-leading power and energy density combined with an aluminum heat-sink housing and thermal transfer interface ensure consistent cell cooling and maximum long-term powertrain performance.
+                </BattDesc>
+              </BatteryStats>
+              <BatteryParallax>
+                <ParallaxLayer speed={1.4} offset={0.4} style={{width: '30vw'}}>
+                  <div>image</div>
+                </ParallaxLayer>
+              </BatteryParallax>
+            </Battery>
+            <div style={{height: '9000px'}}>me!</div>
+            <div>h</div>
+
+          </Content>
+        </Parallax>
       </Overlay>
     </Container>
   )
 };
 
+const Battery = styled.div`
+  margin-top: 100px;
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  width: 60vw;
+`
+const BattTitle = styled.div`
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  margin-bottom: 40px;
+  font-size: 30px;
+  letter-spacing: 2px;
+`
+const BattDesc = styled.div`
+  width: 24vw;
+  color: rgb(100, 100, 100);
+  font-size: 18px;
+  line-height: 50px;
+`
+const BatteryParallax = styled.div`
+  display: flex;
+  align-items: flex-end;
+  border: 1px solid green;
+  width: 30vw;
+`
+const BatteryStats = styled.div`
+  width: 30vw;
+  border: 1px solid black;
+`
 const Close = styled.div`
   background: rgb(96, 168, 150);
   position: fixed;
@@ -39,6 +98,7 @@ const Close = styled.div`
   cursor: pointer;
   transform: rotate(45deg);
   transition: all 0.4s ease;
+  z-index: 105;
   &:hover {
     transform: rotate(-45deg);
     background: rgb(54, 97, 86);
@@ -61,7 +121,10 @@ const Content = styled.div`
   position: relative;
   overflow: auto;
   height: 100%;
+  width: 80vw;
   background: rgb(240, 240, 240);
+  display: flex;
+  flex-direction: column;
 `
 const Overlay = styled.div`
   z-index: 101;
@@ -71,7 +134,6 @@ const Overlay = styled.div`
   width: 80vw;
   height: 100vh;
   background: rgb(240, 240, 240);
-  padding: 1px;
 `
 
 export default Power;
