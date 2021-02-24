@@ -39,7 +39,7 @@ const Pricing = ({ paint, setPaint }) => {
   });
 
   const blueFrameProps = useSpring({
-    marginLeft: !paint ? '-500px' : '-850px',
+    marginLeft: !paint ? '-500px' : '-910px',
     from: { marginLeft: '-500px' },
     config: {duration: 400},
     delay: !paint ? 400 : 0
@@ -53,8 +53,8 @@ const Pricing = ({ paint, setPaint }) => {
   });
 
   const grayFrameProps = useSpring({
-    marginLeft: !paint ? '-850px' : '-500px',
-    from: { marginLeft: '-850px' },
+    marginLeft: !paint ? '-910px' : '-500px',
+    from: { marginLeft: '-890px' },
     config: {duration: 400},
     delay: !paint ? 0 : 400
   });
@@ -67,7 +67,7 @@ const Pricing = ({ paint, setPaint }) => {
   });
 
   const blueWheelProps = useSpring({
-    marginLeft: !paint ? '202px' : '-145px',
+    marginLeft: !paint ? '202px' : '-205px',
     from: { marginLeft: '202px' },
     config: {duration: 400},
     delay: !paint ? 400 : 0
@@ -81,8 +81,8 @@ const Pricing = ({ paint, setPaint }) => {
   });
 
   const grayWheelProps = useSpring({
-    marginLeft: !paint ? '-145px' : '202px',
-    from: { marginLeft: '-145px' },
+    marginLeft: !paint ? '-205px' : '202px',
+    from: { marginLeft: '-205px' },
     config: {duration: 400},
     delay: !paint ? 0 : 400
   });
@@ -95,14 +95,14 @@ const Pricing = ({ paint, setPaint }) => {
   });
 
   const blueShadowProps = useSpring({
-    marginLeft: !paint ? '-300px' : '-625px',
+    marginLeft: !paint ? '-300px' : '-685px',
     from: { marginLeft: '-300px' },
     config: {duration: 400},
     delay: !paint ? 400 : 0,
   });
   const grayShadowProps = useSpring({
-    marginLeft: !paint ? '-625px' : '-300px',
-    from: { marginLeft: '-625px' },
+    marginLeft: !paint ? '-685px' : '-300px',
+    from: { marginLeft: '-685px' },
     config: {duration: 400},
     delay: !paint ? 0 : 400,
   });
@@ -139,7 +139,7 @@ const Pricing = ({ paint, setPaint }) => {
         </animated.div>
         <animated.div style={{...blueWheelProps, ...blueWheelPropsOpac}}>
           <Wheel
-            style={!paint ? {transform: 'rotate(90deg)', transition: 'all 0.4s linear', transitionDelay: '0.4s'} : {transform: 'rotate(0deg)', transition: 'all 0.4s linear'}}
+            style={!paint ? {transform: 'rotate(90deg)', transition: 'all 0.4s linear', transitionDelay: '0.4s'} : {transform: 'rotate(-20deg)', transition: 'all 0.4s linear'}}
             src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/srfWheel.png"
           />
         </animated.div>
@@ -150,7 +150,7 @@ const Pricing = ({ paint, setPaint }) => {
         </animated.div>
         <animated.div style={{...grayWheelProps, ...grayFramePropsOpac}}>
           <Wheel
-            style={paint ? {transform: 'rotate(90deg)', transition: 'all 0.4s linear', transitionDelay: '0.4s'} : {transform: 'rotate(0deg)', transition: 'all 0.4s linear'}}
+            style={paint ? {transform: 'rotate(90deg)', transition: 'all 0.4s linear', transitionDelay: '0.4s'} : {transform: 'rotate(-20deg)', transition: 'all 0.4s linear'}}
             src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/srfGrayWheel.png"
           />
         </animated.div>
