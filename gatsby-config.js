@@ -15,7 +15,7 @@ module.exports = {
           `source sans pro\:300,400,400i,700`,
           `work sans\:Semi-bold 600,Regular 400,Light 300`,
           `lobster\:Regular 400`,
-          `montserrat\:Regular 400,Light 300,Semi-bold 600`,
+          `montserrat\:Regular 400,Light 300,Semi-bold 600,Thin 100`,
           `oswald\:Bold 700,Medium 500`
         ],
         display: 'swap'

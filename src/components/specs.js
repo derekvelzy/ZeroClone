@@ -3,11 +3,26 @@ import React, { useRef, useEffect, useState } from "react"
 import { animated, useSpring } from "react-spring";
 import styled from 'styled-components';
 
-const Specs = () => {
+const Specs = ({ specView }) => {
   const [standard, setStandard] = useState(20);
   const [premium, setPremium] = useState(20);
   const [selected, setSelected] = useState('standard');
   const [hover, setHover] = useState(0);
+
+  const topSpeed = useSpring({
+    number: specView > 230 ? 124 : 0,
+    config: {duration: 700},
+  });
+
+  const peakTorque = useSpring({
+    number: specView > 230 ? 140 : 0,
+    config: {duration: 700},
+  });
+
+  const oct = useSpring({
+    number: specView > 230 ? 80 : 0,
+    config: {duration: 700},
+  });
 
   return (
     <Container>
@@ -33,7 +48,7 @@ const Specs = () => {
       <SpecContainer>
         <Column>
           <Spec>TOP SPEED (MAX)</Spec>
-          <Big>124</Big>
+          <Big><animated.div>{topSpeed.number.interpolate(num => Math.floor(num))}</animated.div></Big>
           <Spec style={{marginBottom: '10px'}}>MPH</Spec>
           <Other>200 MILE RANGE</Other>
           <Details>With Power Tank</Details>
@@ -44,7 +59,7 @@ const Specs = () => {
         </Column>
         <Column>
           <Spec>PEAK TORQUE</Spec>
-          <Big>140</Big>
+          <Big><animated.div>{peakTorque.number.interpolate(num => Math.floor(num))}</animated.div></Big>
           <Spec style={{marginBottom: '10px'}}>FT-LB</Spec>
           <Other>100% ELECTRIC POWERTRAIN</Other>
           <Details>Low maintenance</Details>
@@ -55,7 +70,7 @@ const Specs = () => {
         </Column>
         <Column>
           <Spec>OPTIMAL CHARGING TIME</Spec>
-          <Big>80</Big>
+          <Big><animated.div>{oct.number.interpolate(num => Math.floor(num))}</animated.div></Big>
           <Spec style={{marginBottom: '10px'}}>MINUTES</Spec>
           <Other>CYPHER III</Other>
           <Details>Operating system</Details>
@@ -125,6 +140,8 @@ const Other = styled.div`
   margin-top: 16px;
 `
 const Plus = styled.div`
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
   margin-top: 10px;
   border: 1px solid rgb(150, 150, 150);
   height: 40px;

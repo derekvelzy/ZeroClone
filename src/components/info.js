@@ -1,12 +1,25 @@
-import React, { useState, useEffect } from "react"
-// import { graphql, useStaticQuery } from 'gatsby'
+import React, { useState, useEffect, useRef } from "react"
 import styled from 'styled-components';
 
-const Info = () => {
+const Info = ({ setSpecView }) => {
+  const ref = useRef();
+
   const [hover, setHover] = useState(0);
 
+  const handleScroll = () => {
+    const offset = -1 * ref.current.getBoundingClientRect().top;
+    setSpecView(offset);
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    }
+  });
+
   return (
-    <Container>
+    <Container ref={ref}>
       <picture>
         <BGSource srcSet="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/desert.jpg" />
         <BG src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/desert.webp" />
@@ -55,6 +68,8 @@ const Desc = styled.div`
   align-items: center;
 `
 const Plus = styled.div`
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
   margin-top: 24px;
   height: 55px;
   width: 55px;

@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { animated, useSpring } from "react-spring";
 
-const Image = ({imageProps, jpg, webp, height, width}) => {
+const Image = ({ galleryView, jpg, webp, height, width, setCaro, position }) => {
   const [hover, setHover] = useState(1);
   const [shrink, setShrink] = useState(1);
   const [plusHover, setPlusHover] = useState(0);
+
+  const imageProps = useSpring({
+    transform: galleryView > 380 ? 'scale(1)' : 'scale(0.4)',
+    from: { transform: 'scale(0.4)' },
+    config: { duration: 350 + (position * 50) },
+  });
 
   return (
     <animated.div style={imageProps}>
@@ -21,8 +27,10 @@ const Image = ({imageProps, jpg, webp, height, width}) => {
             setPlusHover(-90);
           }}
           onMouseLeave={() => {
+            setHover(1)
             setPlusHover(0);
           }}
+          onClick={() => setCaro(true)}
           style={height > 18 ?
             {marginTop: '15vh', marginLeft: `${width * 0.45}vw`, transform: `rotate(${plusHover}deg)`} :
             {marginTop: '6vh', marginLeft: `${width * 0.4}vw`, transform: `rotate(${plusHover}deg)`}}
@@ -80,6 +88,8 @@ const ImageContainer = styled.div`
   overflow: hidden;
 `
 const Plus = styled.div`
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
   position: absolute;
   border: 1px solid white;
   height: 40px;
@@ -90,7 +100,7 @@ const Plus = styled.div`
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 30px;
+  font-size: 40px;
   cursor: pointer;
   transition: all 0.4s ease;
   &:hover {

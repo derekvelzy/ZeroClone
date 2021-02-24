@@ -1,14 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react'
 import styled from 'styled-components';
-// import { Parallax, Background } from 'react-parallax';
-// import { animated, useSpring } from "react-spring";
-// import {Parallax, ParallaxLayer} from 'react-spring/renderprops-addons'
 // import { Helmet } from 'react-helmet';
 import loadable from '@loadable/component';
-// import Aos from 'aos';
-// import 'aos/dist/aos.css';
-
-// const calc = (o) => `translateY(${o * 0.2}px)`;
+import DLL from '../components/DLL.js';
 
 const Model = loadable(() => import('../components/model.js'));
 const Video = loadable(() => import('../components/video.js'));
@@ -16,10 +10,44 @@ const Gallery = loadable(() => import('../components/gallery.js'));
 const Info = loadable(() => import('../components/info.js'));
 const Specs = loadable(() => import('../components/specs.js'));
 const Pricing = loadable(() => import('../components/pricing.js'));
+const Carousel = loadable(() => import('../components/carousel.js'));
+
+export const images = [
+  {
+    jpg: 'https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/one.jpg',
+    webp: 'https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/one50.webp'
+  },
+  {
+    jpg: 'https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/two.jpg',
+    webp: 'https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/two50.webp'
+  },
+  {
+    jpg: 'https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/three.jpg',
+    webp: 'https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/three50.webp'
+  },
+  {
+    jpg: 'https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/four.jpg',
+    webp: 'https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/four50.webp'
+  },
+  {
+    jpg: 'https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/five.jpg',
+    webp: 'https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/five50.webp'
+  },
+  {
+    jpg: 'https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/six.jpg',
+    webp: 'https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/six50.webp'
+  },
+  {
+    jpg: 'https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/seven.jpg',
+    webp: 'https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/seven50.webp'
+  },
+]
 
 const IndexPage = () => {
-  const [paint, setPaint] = useState(true);
+  const [paint, setPaint] = useState(false);
   const [galleryView, setGalleryView] = useState(0);
+  const [specView, setSpecView] = useState(0);
+  const [caro, setCaro] = useState(false);
 
   const modelRef = useRef(null);
   const videoRef = useRef(null);
@@ -29,14 +57,22 @@ const IndexPage = () => {
   const pricingRef = useRef(null);
 
   const modelScroll = () => modelRef.current.scrollIntoView({behavior: "smooth", block: "nearest"});
-  const videoScroll = () => videoRef.current.scrollIntoView({behavior: "smooth", block: "nearest"});
   const galleryScroll = () => galleryRef.current.scrollIntoView({behavior: "smooth", block: "nearest"});
   const infoScroll = () => infoRef.current.scrollIntoView({behavior: "smooth", block: "nearest"});
   const specsScroll = () => specsRef.current.scrollIntoView({behavior: "smooth", block: "nearest"});
   const pricingScroll = () => pricingRef.current.scrollIntoView({behavior: "smooth", block: "nearest"});
 
+  const back = async () => {
+    await setCaro(false);
+    setGalleryView(381);
+    galleryRef.current.scrollIntoView({block: "nearest"});
+  }
+
   return (
-    <Container>
+    <Container style={caro ? {position: 'fixed'} : {position: 'relative'}}>
+      <div style={caro ? {display: 'block'} : {display: 'none'}}>
+        <Carousel back={back} images={images} />
+      </div>
       <Switch>
         <Buttons style={
           paint ?
@@ -50,26 +86,26 @@ const IndexPage = () => {
           <Button onClick={pricingScroll}>BUILD</Button>
         </Buttons>
       </Switch>
-        <div>
-          <div ref={modelRef}>
-            <Model
-              paint={paint}
-              setPaint={setPaint}
-              />
-          </div>
-          <div>
-            <Video
-              setGalleryView={setGalleryView}
-            />
-          </div>
-          <div style={{ background: 'rgb(20, 20, 20)', height: '100px' }}/>
-          <div ref={galleryRef}>
-            <Gallery galleryView={galleryView} />
-          </div>
-          <div ref={infoRef}><Info /></div>
-          <div ref={specsRef}><Specs /></div>
-          <div ref={pricingRef}><Pricing /></div>
+      <div>
+        <div ref={modelRef}>
+          <Model
+            paint={paint}
+            setPaint={setPaint}
+          />
         </div>
+        <div>
+          <Video
+            setGalleryView={setGalleryView}
+          />
+        </div>
+        <div style={{ background: 'rgb(20, 20, 20)', height: '100px' }}/>
+        <div ref={galleryRef}>
+          <Gallery galleryView={galleryView} setCaro={setCaro} />
+        </div>
+        <div ref={infoRef}><Info setSpecView={setSpecView} /></div>
+        <div ref={specsRef}><Specs specView={specView} /></div>
+        <div ref={pricingRef}><Pricing paint={paint} setPaint={setPaint} /></div>
+      </div>
     </Container>
   )
 };

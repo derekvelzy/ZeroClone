@@ -3,11 +3,10 @@ import { animated, useSpring } from "react-spring";
 import styled from 'styled-components';
 import Video from './video.js';
 import Image from './Image.js';
+import { images } from '../pages/index.js';
 
-const Gallery = ({ galleryView }) => {
+const Gallery = ({ galleryView, setCaro }) => {
   const ref = useRef();
-
-  const [hovers, setHovers] = useState([0, 0, 0, 0, 0, 0, 0])
 
   const props = useSpring({
     opacity: galleryView > 380 ? 1 : 0,
@@ -16,73 +15,81 @@ const Gallery = ({ galleryView }) => {
     config: {duration: 700},
   });
 
-  const imageProps = useSpring({
-    transform: galleryView > 380 ? 'scale(1)' : 'scale(0.4)',
-    from: { transform: 'scale(0.4)' },
-    config: {duration: 400},
-  });
-
   return (
     <Container ref={ref}>
       <animated.div style={props}>
       <Box>
         <Top>
           <Image
-            imageProps={imageProps}
-            jpg={"https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/one.jpg"}
-            webp={"https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/one50.webp"}
+            galleryView={galleryView}
+            jpg={images[0].jpg}
+            webp={images[0].webp}
             height={39}
             width={53}
+            setCaro={setCaro}
+            position={0}
           />
           <Image
-            imageProps={imageProps}
-            jpg={"https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/seven.jpg"}
-            webp={"https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/seven50.webp"}
+            galleryView={galleryView}
+            jpg={images[6].jpg}
+            webp={images[6].webp}
             height={39}
             width={31}
+            setCaro={setCaro}
+            position={6}
           />
         </Top>
         <Bottom>
           <Image
-            imageProps={imageProps}
-            jpg={"https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/six.jpg"}
-            webp={"https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/six50.webp"}
+            galleryView={galleryView}
+            jpg={images[5].jpg}
+            webp={images[5].webp}
             height={39}
             width={21}
+            setCaro={setCaro}
+            position={5}
           />
           <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
             <div>
               <Image
-                imageProps={imageProps}
-                jpg={"https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/five.jpg"}
-                webp={"https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/five50.webp"}
+                galleryView={galleryView}
+                jpg={images[4].jpg}
+                webp={images[4].webp}
                 height={18}
                 width={40}
+                setCaro={setCaro}
+                position={4}
               />
             </div>
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
               <Image
-                imageProps={imageProps}
-                jpg={"https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/three.jpg"}
-                webp={"https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/three50.webp"}
+                galleryView={galleryView}
+                jpg={images[2].jpg}
+                webp={images[2].webp}
                 height={18}
                 width={19.3}
+                setCaro={setCaro}
+                position={2}
               />
               <Image
-                imageProps={imageProps}
-                jpg={"https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/two.jpg"}
-                webp={"https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/two50.webp"}
+                galleryView={galleryView}
+                jpg={images[1].jpg}
+                webp={images[1].webp}
                 height={18}
                 width={19.3}
+                setCaro={setCaro}
+                position={1}
               />
             </div>
           </div>
           <Image
-            imageProps={imageProps}
-            jpg={"https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/four.jpg"}
-            webp={"https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/four50.webp"}
+            galleryView={galleryView}
+            jpg={images[3].jpg}
+            webp={images[3].webp}
             height={39}
             width={21}
+            setCaro={setCaro}
+            position={3}
           />
         </Bottom>
       </Box>
