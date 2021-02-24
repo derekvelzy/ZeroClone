@@ -39,7 +39,10 @@ const Specs = ({ specView }) => {
           onMouseLeave={() => setStandard(20)}
           onClick={() => setSelected('standard')}
         >
-          <div style={selected === 'standard' ? {color: 'rgb(150, 150, 150)'} : {color: 'black'}}>Standard</div>
+          <div style={selected === 'standard' ?
+          {color: 'rgb(150, 150, 150)', transition: 'all 0.4s ease'} :
+          {color: 'black', transition: 'all 0.4s ease'}}
+        >Standard</div>
           <Line style={selected === 'standard' ? {border: '1px solid rgb(150, 150, 150)', width: `${standard}px`} : {border: '1px solid black', width: `${standard}px`}}/>
         </Button>
         <Button
@@ -47,7 +50,10 @@ const Specs = ({ specView }) => {
           onMouseLeave={() => setPremium(20)}
           onClick={() => setSelected('premium')}
         >
-          <div style={selected === 'premium' ? {color: 'rgb(150, 150, 150)'} : {color: 'black'}}>Premium</div>
+          <div style={selected === 'premium' ?
+          {color: 'rgb(150, 150, 150)', transition: 'all 0.4s ease'} :
+          {color: 'black', transition: 'all 0.4s ease'}}
+        >Premium</div>
           <Line style={selected === 'premium' ? {border: '1px solid rgb(150, 150, 150)', width: `${premium}px`} : {border: '1px solid black', width: `${premium}px`}}/>
         </Button>
       </Buttons>

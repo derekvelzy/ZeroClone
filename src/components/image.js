@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { animated, useSpring } from "react-spring";
 
-const Image = ({ galleryView, jpg, webp, height, width, setCaro, position }) => {
+const Image = ({ galleryView, jpg, webp, height, width, setCaro, position, setIndex }) => {
   const [hover, setHover] = useState(1);
   const [shrink, setShrink] = useState(1);
   const [plusHover, setPlusHover] = useState(0);
@@ -12,6 +12,11 @@ const Image = ({ galleryView, jpg, webp, height, width, setCaro, position }) => 
     from: { transform: 'scale(0.4)' },
     config: { duration: 350 + (position * 50) },
   });
+
+  const open = () => {
+    setIndex(position);
+    setCaro(true)
+  }
 
   return (
     <animated.div style={imageProps}>
@@ -30,7 +35,7 @@ const Image = ({ galleryView, jpg, webp, height, width, setCaro, position }) => 
             setHover(1)
             setPlusHover(0);
           }}
-          onClick={() => setCaro(true)}
+          onClick={() => open()}
           style={height > 18 ?
             {marginTop: '15vh', marginLeft: `${width * 0.45}vw`, transform: `rotate(${plusHover}deg)`} :
             {marginTop: '6vh', marginLeft: `${width * 0.4}vw`, transform: `rotate(${plusHover}deg)`}}

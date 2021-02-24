@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import styled from 'styled-components';
 // import { Helmet } from 'react-helmet';
 import loadable from '@loadable/component';
-import DLL from '../components/DLL.js';
+import { animated, useSpring } from "react-spring";
 
 const Model = loadable(() => import('../components/model.js'));
 const Video = loadable(() => import('../components/video.js'));
@@ -11,6 +11,7 @@ const Info = loadable(() => import('../components/info.js'));
 const Specs = loadable(() => import('../components/specs.js'));
 const Pricing = loadable(() => import('../components/pricing.js'));
 const Carousel = loadable(() => import('../components/carousel.js'));
+const Power = loadable(() => import('../components/power.js'));
 
 export const images = [
   {
@@ -48,6 +49,9 @@ const IndexPage = () => {
   const [galleryView, setGalleryView] = useState(0);
   const [specView, setSpecView] = useState(0);
   const [caro, setCaro] = useState(false);
+  const [power, setPower] = useState(false);
+  const [index, setIndex] = useState(0);
+  const [pageTop, setPageTop] = useState(0);
 
   const modelRef = useRef(null);
   const videoRef = useRef(null);
@@ -68,10 +72,42 @@ const IndexPage = () => {
     galleryRef.current.scrollIntoView({block: "nearest"});
   }
 
+  const openPower = () => {
+    setPower(true);
+    setPageTop(window.scrollY);
+  };
+
+  const closePower = async () => {
+    await setPower(false);
+    window.scrollTo(0, pageTop);
+  }
+
+  let conditionalStyle = {
+    position: 'relative',
+
+  }
+  if (power) {
+    conditionalStyle = {
+      top: `-${window.scrollY}px`,
+      position: 'fixed',
+      filter: 'blur(20px)',
+      filter: 'brightness(0.2)'
+    }
+  } else if (caro) {
+    conditionalStyle = {
+      position: 'fixed',
+
+    }
+  }
+
   return (
-    <Container style={caro ? {position: 'fixed'} : {position: 'relative'}}>
+    <div>
+      <PowerCont style={power ? {marginRight: '0vw'} : {marginRight: '-85vw'}}>
+        <Power closePower={closePower} power={power} />
+      </PowerCont>
+    <Container style={conditionalStyle}>
       <div style={caro ? {display: 'block'} : {display: 'none'}}>
-        <Carousel back={back} images={images} />
+        <Carousel back={back} images={images} index={index} setIndex={setIndex} />
       </div>
       <Switch>
         <Buttons style={
@@ -100,13 +136,14 @@ const IndexPage = () => {
         </div>
         <div style={{ background: 'rgb(20, 20, 20)', height: '100px' }}/>
         <div ref={galleryRef}>
-          <Gallery galleryView={galleryView} setCaro={setCaro} />
+          <Gallery galleryView={galleryView} setCaro={setCaro} setIndex={setIndex} />
         </div>
-        <div ref={infoRef}><Info setSpecView={setSpecView} /></div>
+        <div ref={infoRef}><Info setSpecView={setSpecView} openPower={openPower} /></div>
         <div ref={specsRef}><Specs specView={specView} /></div>
         <div ref={pricingRef}><Pricing paint={paint} setPaint={setPaint} /></div>
       </div>
     </Container>
+    </div>
   )
 };
 
@@ -137,6 +174,12 @@ const Buttons = styled.div`
 const Container = styled.div`
   margin: 0;
   padding: 0;
+  transition: all 0.4s ease;
+`
+const PowerCont = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  transition: all 0.4s ease;
 `
 const Switch = styled.div`
   background: rgba(0, 0, 0, 0.6);

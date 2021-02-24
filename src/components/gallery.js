@@ -5,7 +5,7 @@ import Video from './video.js';
 import Image from './Image.js';
 import { images } from '../pages/index.js';
 
-const Gallery = ({ galleryView, setCaro }) => {
+const Gallery = ({ galleryView, setCaro, setIndex }) => {
   const ref = useRef();
 
   const props = useSpring({
@@ -28,6 +28,7 @@ const Gallery = ({ galleryView, setCaro }) => {
             width={53}
             setCaro={setCaro}
             position={0}
+            setIndex={setIndex}
           />
           <Image
             galleryView={galleryView}
@@ -37,6 +38,7 @@ const Gallery = ({ galleryView, setCaro }) => {
             width={31}
             setCaro={setCaro}
             position={6}
+            setIndex={setIndex}
           />
         </Top>
         <Bottom>
@@ -48,6 +50,7 @@ const Gallery = ({ galleryView, setCaro }) => {
             width={21}
             setCaro={setCaro}
             position={5}
+            setIndex={setIndex}
           />
           <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
             <div>
@@ -59,6 +62,7 @@ const Gallery = ({ galleryView, setCaro }) => {
                 width={40}
                 setCaro={setCaro}
                 position={4}
+                setIndex={setIndex}
               />
             </div>
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
@@ -70,6 +74,7 @@ const Gallery = ({ galleryView, setCaro }) => {
                 width={19.3}
                 setCaro={setCaro}
                 position={2}
+                setIndex={setIndex}
               />
               <Image
                 galleryView={galleryView}
@@ -79,6 +84,7 @@ const Gallery = ({ galleryView, setCaro }) => {
                 width={19.3}
                 setCaro={setCaro}
                 position={1}
+                setIndex={setIndex}
               />
             </div>
           </div>
@@ -90,6 +96,7 @@ const Gallery = ({ galleryView, setCaro }) => {
             width={21}
             setCaro={setCaro}
             position={3}
+            setIndex={setIndex}
           />
         </Bottom>
       </Box>

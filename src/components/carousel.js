@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { animated, useTransition, config } from "react-spring";
 
-const Carousel = ({ back, images }) => {
-  const [index, setIndex] = useState(0);
+const Carousel = ({ back, images, index, setIndex }) => {
 
   const forward = () => {
     if (index === images.length - 1) {

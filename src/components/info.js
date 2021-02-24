@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import styled from 'styled-components';
 
-const Info = ({ setSpecView }) => {
+const Info = ({ setSpecView, openPower }) => {
   const ref = useRef();
 
   const [hover, setHover] = useState(0);
@@ -30,6 +30,7 @@ const Info = ({ setSpecView }) => {
         <Plus
           onMouseEnter={() => setHover(-90)}
           onMouseLeave={() => setHover(0)}
+          onClick={() => openPower()}
           style={{transform: `rotate(${hover}deg)`}}
         >+</Plus>
       </Desc>
