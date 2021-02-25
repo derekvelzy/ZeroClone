@@ -3,7 +3,7 @@ import { animated, useSpring } from "react-spring";
 import styled from 'styled-components';
 
 const Pricing = ({ paint, setPaint }) => {
-  const [hovers, setHovers] = useState(['gray', 'gray', 'gray', 'gray', 'gray']);
+  const [hovers, setHovers] = useState(['#404040', '#404040', '#404040', '#404040', '#404040']);
   const [first, setFirst] = useState(21);
   const [last, setLast] = useState(495);
   const [modelType, setModelType] = useState('premium');
@@ -73,13 +73,6 @@ const Pricing = ({ paint, setPaint }) => {
     delay: !paint ? 400 : 0
   });
 
-  // const blueWheelPropsOpac = useSpring({
-  //   opacity: !paint ? '1' : '0',
-  //   from: { opacity: '1' },
-  //   config: {duration: 0},
-  //   delay: 400
-  // });
-
   const grayWheelProps = useSpring({
     marginLeft: !paint ? '-205px' : '202px',
     from: { marginLeft: '-205px' },
@@ -87,19 +80,13 @@ const Pricing = ({ paint, setPaint }) => {
     delay: !paint ? 0 : 400
   });
 
-  // const grayWheelPropsOpac = useSpring({
-  //   opacity: !paint ? '0' : '1',
-  //   from: { opacity: '0' },
-  //   config: {duration: 0},
-  //   delay: 400
-  // });
-
   const blueShadowProps = useSpring({
     marginLeft: !paint ? '-300px' : '-685px',
     from: { marginLeft: '-300px' },
     config: {duration: 400},
     delay: !paint ? 400 : 0,
   });
+
   const grayShadowProps = useSpring({
     marginLeft: !paint ? '-685px' : '-300px',
     from: { marginLeft: '-685px' },
@@ -189,12 +176,12 @@ const Pricing = ({ paint, setPaint }) => {
         <Option>MODEL</Option>
         <ModelOptions>
           <Button
-            onMouseEnter={() => setHovers(['white', 'gray', 'gray', 'gray', 'gray'])}
-            onMouseLeave={() => setHovers(['gray', 'gray', 'gray', 'gray', 'gray'])}
+            onMouseEnter={() => setHovers(['white', '#404040', '#404040', '#404040', '#404040'])}
+            onMouseLeave={() => setHovers(Array(5).fill('#404040'))}
             onClick={() => setModelType('premium')}
             style={
               modelType === 'premium' ?
-              { background: 'rgb(60, 60, 60)', border: `1px solid ${hovers[0]}` } :
+              { background: 'rgb(55, 55, 55)', border: `1px solid ${hovers[0]}` } :
               { border: `1px solid ${hovers[0]}` }}
           >
             <div>PREMIUM</div>
@@ -212,12 +199,12 @@ const Pricing = ({ paint, setPaint }) => {
             </ModalA>
           </animated.div>
           <Button
-            onMouseEnter={() => setHovers(['gray', 'white', 'gray', 'gray', 'gray'])}
-            onMouseLeave={() => setHovers(['gray', 'gray', 'gray', 'gray', 'gray'])}
+            onMouseEnter={() => setHovers(['#404040', 'white', '#404040', '#404040', '#404040'])}
+            onMouseLeave={() => setHovers(Array(5).fill('#404040'))}
             onClick={() => setModelType('standard')}
             style={
               modelType === 'standard' ?
-              { background: 'rgb(60, 60, 60)', border: `1px solid ${hovers[1]}` } :
+              { background: 'rgb(55, 55, 55)', border: `1px solid ${hovers[1]}` } :
               { border: `1px solid ${hovers[1]}` }}
           >
             <div>STANDARD</div>
@@ -238,12 +225,12 @@ const Pricing = ({ paint, setPaint }) => {
         <Option>OPTIONS</Option>
         <ModelOptions>
           <Button
-            onMouseEnter={() => setHovers(['gray', 'gray', 'white', 'gray', 'gray'])}
-            onMouseLeave={() => setHovers(['gray', 'gray', 'gray', 'gray', 'gray'])}
+            onMouseEnter={() => setHovers(['#404040', '#404040', 'white', '#404040', '#404040'])}
+            onMouseLeave={() => setHovers(Array(5).fill('#404040'))}
             onClick={() => setOptionsType('base')}
             style={
               optionsType === 'base' ?
-              { background: 'rgb(60, 60, 60)', border: `1px solid ${hovers[2]}` } :
+              { background: 'rgb(55, 55, 55)', border: `1px solid ${hovers[2]}` } :
               { border: `1px solid ${hovers[2]}` }}
           >
             <div>BASE</div>
@@ -251,12 +238,12 @@ const Pricing = ({ paint, setPaint }) => {
           </Button>
           <div style={{width: '32px'}}/>
           <Button
-            onMouseEnter={() => setHovers(['gray', 'gray', 'gray', 'white', 'gray'])}
-            onMouseLeave={() => setHovers(['gray', 'gray', 'gray', 'gray', 'gray'])}
+            onMouseEnter={() => setHovers(['#404040', '#404040', '#404040', 'white', '#404040'])}
+            onMouseLeave={() => setHovers(Array(5).fill('#404040'))}
             onClick={() => setOptionsType('add')}
             style={
               optionsType === 'add' ?
-              { background: 'rgb(60, 60, 60)', border: `1px solid ${hovers[3]}` } :
+              { background: 'rgb(55, 55, 55)', border: `1px solid ${hovers[3]}` } :
               { border: `1px solid ${hovers[3]}` }}
           >
             <div>ADDITIONAL 6 KW</div>
@@ -276,12 +263,12 @@ const Pricing = ({ paint, setPaint }) => {
         </ModelOptions>
         <ModelOptions style={{width: '300px'}}>
           <Button
-            onMouseEnter={() => setHovers(['gray', 'gray', 'gray', 'gray', 'white'])}
-            onMouseLeave={() => setHovers(['gray', 'gray', 'gray', 'gray', 'gray'])}
+            onMouseEnter={() => setHovers(['#404040', '#404040', '#404040', '#404040', 'white'])}
+            onMouseLeave={() => setHovers(Array(5).fill('#404040'))}
             onClick={() => setOptionsType('power')}
             style={
               optionsType === 'power' ?
-              { background: 'rgb(60, 60, 60)', border: `1px solid ${hovers[4]}` } :
+              { background: 'rgb(55, 55, 55)', border: `1px solid ${hovers[4]}` } :
               { border: `1px solid ${hovers[4]}` }}
           >
             <div>POWER TANK</div>
