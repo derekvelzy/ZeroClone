@@ -11,6 +11,9 @@ const Model = ({paint, setPaint}) => {
   const [zeroFade, setZeroFade] = useState(false);
   const [SRFFade, setSRFFade] = useState(false);
   const [svgOpen, setSvgOpen] = useState(false);
+  const [click, setClick] = useState(false);
+  const [idx, setIdx] = useState(1);
+
 
   const handleScroll = () => {
     const offset = -1 * ref.current.getBoundingClientRect().top;
@@ -19,6 +22,34 @@ const Model = ({paint, setPaint}) => {
     } else if (offset > 140) {
       setZeroFade(true);
     } else {
+      setZeroFade(false);
+      setSRFFade(false);
+    }
+  }
+
+  const down = (e) => {
+    if (!paint) {
+      setZeroFade(true);
+      setSRFFade(true);
+      setClick(true);
+    }
+  }
+  const drag = (e) => {
+    let v = e.clientX;
+    let el = document.getElementById('drag').getBoundingClientRect().x;
+    if (click && !paint) {
+      if ((el - v + 492) < 3 || (el - v + 492) > 489) {
+        lift();
+      }
+      let newIdx = Math.ceil((el - v + 492)/41);
+      if (newIdx >= 1 && newIdx <= 12) {
+        setIdx(newIdx);
+      }
+    }
+  }
+  const lift = (e) => {
+    if (!paint) {
+      setClick(false);
       setZeroFade(false);
       setSRFFade(false);
     }
@@ -71,7 +102,7 @@ const Model = ({paint, setPaint}) => {
         {background: 'rgb(41, 41, 41)', transition: 'all 0.5s ease'}}
     >
       <Svg src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/logo.svg" />
-      <Burger onClick={() => setSvgOpen(!svgOpen)} width="57" height="47" viewBox="0 0 57 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <Burger onClick={() => setSvgOpen(!svgOpen)} width="45" height="33" viewBox="0 0 57 47" fill="none" xmlns="http://www.w3.org/2000/svg">
         <TBL x1="2" y1="22.3947" x2="40.2295" y2="22.3947" stroke="white" strokeWidth="3"
            strokeDasharray={svgOpen ? '0 39' : '39 39'}
            strokeDashoffset={svgOpen ? '-17px' : '0px'}
@@ -85,12 +116,17 @@ const Model = ({paint, setPaint}) => {
           strokeDashoffset={svgOpen ? '-102px' : '0px'}
         />
       </Burger>
-
+      <DragBox
+        id="drag"
+        onMouseDown={(e) => down(e)}
+        onMouseMove={(e) => drag(e)}
+        onMouseUp={(e) => lift(e)}
+      />
       <animated.div style={zeroProps}>
         <Zero
           style={paint ?
             {color: 'rgb(140, 140, 140)', transition: 'all 0.7s ease'} :
-            {color: 'rgb(242, 91, 68)', transition: 'all 0.4s ease'}}
+            {color: 'rgb(225, 87, 77)', transition: 'all 0.4s ease'}}
         >
           ZERO
         </Zero>
@@ -112,8 +148,10 @@ const Model = ({paint, setPaint}) => {
           style={{border:`${grayBorder}`, transition: 'all 0.4s ease'}}
         />
       </Switch>
-      {paint ? <Bike src="https://d29sx7s964xey6.cloudfront.net/95572365-de9a-497b-adc7-d166534a43e5_1-SR-F_Black_CFCFCF.png?auto=compress,format&amp;w=1920&amp;fit=clip" id="poster"/> :
-      <Bike src="https://d29sx7s964xey6.cloudfront.net/1931d1a8-edec-4f3d-9776-ce3352e9630f_1-SR-F_Mint_242424.png?auto=compress,format&amp;w=1920&amp;fit=clip" id="poster" />}
+      {
+        paint ? <Bike src="https://d29sx7s964xey6.cloudfront.net/95572365-de9a-497b-adc7-d166534a43e5_1-SR-F_Black_CFCFCF.png?auto=compress,format&amp;w=1920&amp;fit=clip" id="poster"/> :
+        <Bike src={`https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/bike-${idx}.png`} id="poster" />
+      }
     </Container>
   )
 };
@@ -146,6 +184,19 @@ const Blue = styled.div`
   cursor: pointer;
   &:hover {
     border: '1px solid rgb(30, 230, 230)'
+  }
+`
+const DragBox = styled.div`
+  margin-top: 140px;
+  height: 480px;
+  width: 492px;
+  position: absolute;
+  z-index: 4;
+  &:hover {
+    cursor: grab;
+  }
+  &:active {
+    cursor: grabbing;
   }
 `
 const Gray = styled.div`
@@ -181,10 +232,10 @@ const Switch = styled.div`
   top: 45vh;
 `
 const TB = styled.path`
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 `
 const TBL = styled.line`
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 `
 const Zero = styled.div`
   font-family: 'Oswald', sans-serif;

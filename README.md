@@ -13,7 +13,8 @@ Clone of Zero Motorcycle's SR/F Model page.
 ## Features ##
 - Fixed menu bar scrolls to different parts of page.
 
-#### Zero SR/F Header ####
+#### Zero SR/F Model Feature ####
+- Mint color bike rotates 180deg on grab & drag.
 - Fading in/out animations for model title.
 - Graceful switch between model colors.
 - Hamburger menu SVG animation.

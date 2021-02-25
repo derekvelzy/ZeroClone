@@ -10,7 +10,7 @@ const Image = ({ galleryView, jpg, webp, height, width, setCaro, position, setIn
   const imageProps = useSpring({
     transform: galleryView > 380 ? 'scale(1)' : 'scale(0.4)',
     from: { transform: 'scale(0.4)' },
-    config: { duration: 350 + (position * 50) },
+    config: { duration: 320 + (position * 70) },
   });
 
   const open = () => {

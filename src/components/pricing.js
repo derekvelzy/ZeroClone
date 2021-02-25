@@ -130,7 +130,7 @@ const Pricing = ({ paint, setPaint }) => {
   }
 
   return (
-    <Container style={paint ? {background: 'rgb(90, 90, 90)'} : {}}>
+    <Container style={paint ? {background: 'rgb(80, 80, 80)'} : {}}>
       <div>
         <animated.div style={{...blueFrameProps, ...blueFramePropsOpac}}>
           <Frame

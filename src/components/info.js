@@ -71,7 +71,7 @@ const Desc = styled.div`
 const Plus = styled.div`
   font-family: 'Montserrat', sans-serif;
   font-weight: 100;
-  margin-top: 24px;
+  margin-top: 40px;
   height: 55px;
   width: 55px;
   border-radius: 50%;
