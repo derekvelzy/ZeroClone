@@ -1,9 +1,6 @@
 import React, { useRef, useEffect, useState } from "react"
 import styled from 'styled-components';
-import { animated, useSpring, Spring } from "react-spring";
-import Video from './video.js';
-import Aos from 'aos';
-import 'aos/dist/aos.css';
+import { animated, useSpring } from "react-spring";
 
 const Model = ({paint, setPaint}) => {
   const ref = useRef();
@@ -12,8 +9,15 @@ const Model = ({paint, setPaint}) => {
   const [SRFFade, setSRFFade] = useState(false);
   const [svgOpen, setSvgOpen] = useState(false);
   const [click, setClick] = useState(false);
-  const [idx, setIdx] = useState(1);
-
+  const [idx, setIdx] = useState(0);
+  const [images, setImages] = useState([
+    <img
+      style={{height: '620px'}}
+      alt="mint srf"
+      src={`https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/bike-1.png`}
+      id="poster"
+    />
+  ]);
 
   const handleScroll = () => {
     const offset = -1 * ref.current.getBoundingClientRect().top;
@@ -41,8 +45,8 @@ const Model = ({paint, setPaint}) => {
       if ((el - v + 492) < 3 || (el - v + 492) > 489) {
         lift();
       }
-      let newIdx = Math.ceil((el - v + 492)/41);
-      if (newIdx >= 1 && newIdx <= 12) {
+      let newIdx = Math.floor((el - v + 492)/41);
+      if (newIdx >= 0 && newIdx <= 11) {
         setIdx(newIdx);
       }
     }
@@ -62,6 +66,21 @@ const Model = ({paint, setPaint}) => {
     }
   })
 
+  useEffect(() => {
+    let ims = [];
+    for (let i = 1; i < 13; i++) {
+      ims.push(
+        <img
+          style={{height: '620px'}}
+          alt="mint srf"
+          src={`https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/bike-${i}.png`}
+          id="poster"
+        />
+      )
+    }
+    console.log(ims);
+    setImages(ims);
+  }, [])
 
   const zeroProps = useSpring({
     opacity: zeroFade ? 0 : 1,
@@ -101,17 +120,22 @@ const Model = ({paint, setPaint}) => {
         {background: 'rgb(200, 200, 200)', transition: 'all 0.7s ease'} :
         {background: 'rgb(41, 41, 41)', transition: 'all 0.5s ease'}}
     >
-      <Svg src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/logo.svg" />
-      <Burger onClick={() => setSvgOpen(!svgOpen)} width="45" height="33" viewBox="0 0 57 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <Svg alt="logo" src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/logo.svg" />
+      <Burger
+        onClick={() => setSvgOpen(!svgOpen)}
+        width="45" height="33" viewBox="0 0 57 47" fill="none" xmlns="http://www.w3.org/2000/svg"
+      >
         <TBL x1="2" y1="22.3947" x2="40.2295" y2="22.3947" stroke="white" strokeWidth="3"
            strokeDasharray={svgOpen ? '0 39' : '39 39'}
            strokeDashoffset={svgOpen ? '-17px' : '0px'}
         />
-        <TB d="M2 8.28744 H41.3755C43.6556 8.28744 45.882 8.97964 47.7601 10.2725V10.2725C50.4657 12.1349 52.2232 15.0857 52.5721 18.3517L54.7231 38.4889C54.8992 40.1377 54.3623 41.7832 53.2477 43.0109L53.1138 43.1583C52.4033 43.9408 51.4702 44.487 50.44 44.7234V44.7234C46.9769 45.518 43.3482 44.4805 40.8285 41.9752L2 3.36841" stroke="white" strokeWidth="3"
+        <TB
+          d="M2 8.28744 H41.3755C43.6556 8.28744 45.882 8.97964 47.7601 10.2725V10.2725C50.4657 12.1349 52.2232 15.0857 52.5721 18.3517L54.7231 38.4889C54.8992 40.1377 54.3623 41.7832 53.2477 43.0109L53.1138 43.1583C52.4033 43.9408 51.4702 44.487 50.44 44.7234V44.7234C46.9769 45.518 43.3482 44.4805 40.8285 41.9752L2 3.36841" stroke="white" strokeWidth="3"
           strokeDasharray='38 150'
           strokeDashoffset={svgOpen ? '-102px' : '0px'}
         />
-        <TB d="M2 38.7125H41.3755C43.6556 38.7125 45.882 38.0203 47.7601 36.7275V36.7275C50.4657 34.8651 52.2232 31.9143 52.5721 28.6483L54.7231 8.51107C54.8992 6.86224 54.3623 5.21673 53.2477 3.98907L53.1138 3.84167C52.4033 3.05914 51.4702 2.51296 50.44 2.27658V2.27658C46.9769 1.48195 43.3482 2.51948 40.8285 5.02474L2 43.6316" stroke="white" strokeWidth="3"
+        <TB
+          d="M2 38.7125H41.3755C43.6556 38.7125 45.882 38.0203 47.7601 36.7275V36.7275C50.4657 34.8651 52.2232 31.9143 52.5721 28.6483L54.7231 8.51107C54.8992 6.86224 54.3623 5.21673 53.2477 3.98907L53.1138 3.84167C52.4033 3.05914 51.4702 2.51296 50.44 2.27658V2.27658C46.9769 1.48195 43.3482 2.51948 40.8285 5.02474L2 43.6316" stroke="white" strokeWidth="3"
           strokeDasharray='38 150'
           strokeDashoffset={svgOpen ? '-102px' : '0px'}
         />
@@ -149,8 +173,13 @@ const Model = ({paint, setPaint}) => {
         />
       </Switch>
       {
-        paint ? <Bike src="https://d29sx7s964xey6.cloudfront.net/95572365-de9a-497b-adc7-d166534a43e5_1-SR-F_Black_CFCFCF.png?auto=compress,format&amp;w=1920&amp;fit=clip" id="poster"/> :
-        <Bike src={`https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/bike-${idx}.png`} id="poster" />
+        paint ?
+        <Bike
+          alt="gray srf"
+          src="https://d29sx7s964xey6.cloudfront.net/95572365-de9a-497b-adc7-d166534a43e5_1-SR-F_Black_CFCFCF.png?auto=compress,format&amp;w=1920&amp;fit=clip"
+          id="poster"
+        /> :
+        <BikeCont>{images[idx]}</BikeCont>
       }
     </Container>
   )
@@ -173,6 +202,11 @@ const Bike = styled.img`
   position: absolute;
   margin-top: 100px;
   height: 620px;
+  z-index: 1;
+`
+const BikeCont = styled.div`
+  margin-top: 100px;
+  position: absolute;
   z-index: 1;
 `
 const Blue = styled.div`

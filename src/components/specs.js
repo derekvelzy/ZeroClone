@@ -1,5 +1,4 @@
-import React, { useRef, useEffect, useState } from "react"
-// import { graphql, useStaticQuery } from 'gatsby'
+import React, { useState } from "react"
 import { animated, useSpring } from "react-spring";
 import styled from 'styled-components';
 
@@ -31,98 +30,98 @@ const Specs = ({ specView }) => {
 
   return (
     <div>
-    <Container>
-      <Title>TECHNICAL SPECIFICATIONS</Title>
-      <Buttons>
-        <Button
-          onMouseEnter={() => setStandard(90)}
-          onMouseLeave={() => setStandard(20)}
-          onClick={() => setSelected('standard')}
-        >
-          <div style={selected === 'standard' ?
-          {color: 'rgb(150, 150, 150)', transition: 'all 0.4s ease'} :
-          {color: 'black', transition: 'all 0.4s ease'}}
-        >Standard</div>
-          <Line style={selected === 'standard' ? {border: '1px solid rgb(150, 150, 150)', width: `${standard}px`} : {border: '1px solid black', width: `${standard}px`}}/>
-        </Button>
-        <Button
-          onMouseEnter={() => setPremium(90)}
-          onMouseLeave={() => setPremium(20)}
-          onClick={() => setSelected('premium')}
-        >
-          <div style={selected === 'premium' ?
-          {color: 'rgb(150, 150, 150)', transition: 'all 0.4s ease'} :
-          {color: 'black', transition: 'all 0.4s ease'}}
-        >Premium</div>
-          <Line style={selected === 'premium' ? {border: '1px solid rgb(150, 150, 150)', width: `${premium}px`} : {border: '1px solid black', width: `${premium}px`}}/>
-        </Button>
-      </Buttons>
-      <SpecContainer>
-        <Column>
-          <Spec>TOP SPEED (MAX)</Spec>
-          <Big><animated.div>{topSpeed.number.interpolate(num => Math.floor(num))}</animated.div></Big>
-          <Spec style={{marginBottom: '10px'}}>MPH</Spec>
-          <Other>200 MILE RANGE</Other>
-          <Details>With Power Tank</Details>
-          <Other>161 MILES</Other>
-          <Details>City Range</Details>
-          <Other>BOSCH</Other>
-          <Details>Motorcycle stability control</Details>
-        </Column>
-        <Column>
-          <Spec>PEAK TORQUE</Spec>
-          <Big><animated.div>{peakTorque.number.interpolate(num => Math.floor(num))}</animated.div></Big>
-          <Spec style={{marginBottom: '10px'}}>FT-LB</Spec>
-          <Other>100% ELECTRIC POWERTRAIN</Other>
-          <Details>Low maintenance</Details>
-          <Other>CLUTCHLESS DIRECT DRIVE</Other>
-          <Details>Transmission</Details>
-          <Other>31.0 IN</Other>
-          <Details>Seat height</Details>
-        </Column>
-        <Column>
-          <Spec>OPTIMAL CHARGING TIME</Spec>
-          <Big><animated.div>{oct.number.interpolate(num => Math.floor(num))}</animated.div></Big>
-          <Spec style={{marginBottom: '10px'}}>MINUTES</Spec>
-          <Other>CYPHER III</Other>
-          <Details>Operating system</Details>
-          <Other>485 LB</Other>
-          <Details>Curb weight</Details>
-          <Other>5 YEARS/UNLIMITED MILES</Other>
-          <Details>Power pack warranty*</Details>
-        </Column>
-      </SpecContainer>
-      <div style={{ color: 'rgb(150, 150, 150)', marginTop: '36px' }}>Full Specs</div>
-      <Plus
-        onMouseEnter={() => setHover(-90)}
-        onMouseLeave={() => setHover(0)}
-        onClick={() => openDrawer()}
-        style={{transform: `rotate(${hover + drawer}deg)`}}
-      >+</Plus>
-    </Container>
-    <Drawer style={drawer === 45 ? {display: 'flex'} : {display: 'none'}}>
-      <More>
-        <div style={{width: '30vw'}}>Range</div>
-        <Spec style={{marginRight: '1vw'}}>STANDARD</Spec>
-        <Spec style={{marginRight: '11vw'}}>PREMIUM</Spec>
-      </More>
-      <Columns>
-        <Col1>
-          <ColItem>City</ColItem>
-          <ColItem>Highway, 55 mph (89 km/h)</ColItem>
-          <ColItem>Highway, 70 mph (113 km/h)</ColItem>
-        </Col1>
-        <Col2>
-          <ColDet>161 miles (259 km)</ColDet>
-          <ColDet>99 miles (159 km)</ColDet>
-          <ColDet>82 miles (132 km)</ColDet>
-        </Col2>
-        <Col2>
-          <ColDet>161 miles (259 km)</ColDet>
-          <ColDet>99 miles (159 km)</ColDet>
-          <ColDet>82 miles (132 km)</ColDet>
-        </Col2>
-      </Columns>
+      <Container>
+        <Title>TECHNICAL SPECIFICATIONS</Title>
+        <Buttons>
+          <Button
+            onMouseEnter={() => setStandard(90)}
+            onMouseLeave={() => setStandard(20)}
+            onClick={() => setSelected('standard')}
+          >
+            <div style={selected === 'standard' ?
+            {color: 'rgb(150, 150, 150)', transition: 'all 0.4s ease'} :
+            {color: 'black', transition: 'all 0.4s ease'}}
+          >Standard</div>
+            <Line style={selected === 'standard' ? {border: '1px solid rgb(150, 150, 150)', width: `${standard}px`} : {border: '1px solid black', width: `${standard}px`}}/>
+          </Button>
+          <Button
+            onMouseEnter={() => setPremium(90)}
+            onMouseLeave={() => setPremium(20)}
+            onClick={() => setSelected('premium')}
+          >
+            <div style={selected === 'premium' ?
+            {color: 'rgb(150, 150, 150)', transition: 'all 0.4s ease'} :
+            {color: 'black', transition: 'all 0.4s ease'}}
+          >Premium</div>
+            <Line style={selected === 'premium' ? {border: '1px solid rgb(150, 150, 150)', width: `${premium}px`} : {border: '1px solid black', width: `${premium}px`}}/>
+          </Button>
+        </Buttons>
+        <SpecContainer>
+          <Column>
+            <Spec>TOP SPEED (MAX)</Spec>
+            <Big><animated.div>{topSpeed.number.interpolate(num => Math.floor(num))}</animated.div></Big>
+            <Spec style={{marginBottom: '10px'}}>MPH</Spec>
+            <Other>200 MILE RANGE</Other>
+            <Details>With Power Tank</Details>
+            <Other>161 MILES</Other>
+            <Details>City Range</Details>
+            <Other>BOSCH</Other>
+            <Details>Motorcycle stability control</Details>
+          </Column>
+          <Column>
+            <Spec>PEAK TORQUE</Spec>
+            <Big><animated.div>{peakTorque.number.interpolate(num => Math.floor(num))}</animated.div></Big>
+            <Spec style={{marginBottom: '10px'}}>FT-LB</Spec>
+            <Other>100% ELECTRIC POWERTRAIN</Other>
+            <Details>Low maintenance</Details>
+            <Other>CLUTCHLESS DIRECT DRIVE</Other>
+            <Details>Transmission</Details>
+            <Other>31.0 IN</Other>
+            <Details>Seat height</Details>
+          </Column>
+          <Column>
+            <Spec>OPTIMAL CHARGING TIME</Spec>
+            <Big><animated.div>{oct.number.interpolate(num => Math.floor(num))}</animated.div></Big>
+            <Spec style={{marginBottom: '10px'}}>MINUTES</Spec>
+            <Other>CYPHER III</Other>
+            <Details>Operating system</Details>
+            <Other>485 LB</Other>
+            <Details>Curb weight</Details>
+            <Other>5 YEARS/UNLIMITED MILES</Other>
+            <Details>Power pack warranty*</Details>
+          </Column>
+        </SpecContainer>
+        <div style={{ color: 'rgb(150, 150, 150)', marginTop: '36px' }}>Full Specs</div>
+        <Plus
+          onMouseEnter={() => setHover(-90)}
+          onMouseLeave={() => setHover(0)}
+          onClick={() => openDrawer()}
+          style={{transform: `rotate(${hover + drawer}deg)`}}
+        >+</Plus>
+      </Container>
+      <Drawer style={drawer === 45 ? {display: 'flex'} : {display: 'none'}}>
+        <More>
+          <div style={{width: '30vw'}}>Range</div>
+          <Spec style={{marginRight: '1vw'}}>STANDARD</Spec>
+          <Spec style={{marginRight: '11vw'}}>PREMIUM</Spec>
+        </More>
+        <Columns>
+          <Col1>
+            <ColItem>City</ColItem>
+            <ColItem>Highway, 55 mph (89 km/h)</ColItem>
+            <ColItem>Highway, 70 mph (113 km/h)</ColItem>
+          </Col1>
+          <Col2>
+            <ColDet>161 miles (259 km)</ColDet>
+            <ColDet>99 miles (159 km)</ColDet>
+            <ColDet>82 miles (132 km)</ColDet>
+          </Col2>
+          <Col2>
+            <ColDet>161 miles (259 km)</ColDet>
+            <ColDet>99 miles (159 km)</ColDet>
+            <ColDet>82 miles (132 km)</ColDet>
+          </Col2>
+        </Columns>
       </Drawer>
     </div>
   )
@@ -254,14 +253,6 @@ const SpecContainer = styled.div`
   width: 900px;
   display: flex;
   justify-content: space-between;
-`
-const Stats = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 10px;
-  margin-top: 20px;
-  width: 70vw;
-  color: rgb(100, 100, 100);
 `
 const Title = styled.div`
   font-size: 35px;

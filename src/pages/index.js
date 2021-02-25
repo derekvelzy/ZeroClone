@@ -1,8 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components';
-// import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import loadable from '@loadable/component';
-import { animated, useSpring } from "react-spring";
 
 const Model = loadable(() => import('../components/model.js'));
 const Video = loadable(() => import('../components/video.js'));
@@ -54,7 +53,6 @@ const IndexPage = () => {
   const [pageTop, setPageTop] = useState(0);
 
   const modelRef = useRef(null);
-  const videoRef = useRef(null);
   const galleryRef = useRef(null);
   const infoRef = useRef(null);
   const specsRef = useRef(null);
@@ -90,8 +88,7 @@ const IndexPage = () => {
     conditionalStyle = {
       top: `-${window.scrollY}px`,
       position: 'fixed',
-      filter: 'blur(20px)',
-      filter: 'brightness(0.2)'
+      filter: 'blur(20px) brightness(0.2)',
     }
   } else if (caro) {
     conditionalStyle = {
@@ -102,47 +99,52 @@ const IndexPage = () => {
 
   return (
     <div>
+      <Helmet htmlAttributes={{lang: 'en'}}>
+        <title>Zero SR/F</title>
+        <meta name="Description" content="zero clone" />
+      </Helmet>
       <PowerCont style={power ? {marginRight: '0vw'} : {marginRight: '-85vw'}}>
         <Power closePower={closePower} power={power} />
       </PowerCont>
-    <Container style={conditionalStyle}>
-      <div style={caro ? {display: 'block'} : {display: 'none'}}>
-        <Carousel back={back} images={images} index={index} setIndex={setIndex} />
-      </div>
-      <Switch>
-        <Buttons style={
-          paint ?
-          {color: 'rgb(200, 200, 200)', transition: 'all 0.4 ease'} :
-          {color: 'rgb(130, 130, 130)', transition: 'all 0.4 ease'}
-        }>
-          <Button onClick={modelScroll}>ZERO SR/F</Button>
-          <Button onClick={galleryScroll}>GALLERY</Button>
-          <Button onClick={infoScroll}>TECH</Button>
-          <Button onClick={specsScroll}>SPECS</Button>
-          <Button onClick={pricingScroll}>BUILD</Button>
-        </Buttons>
-      </Switch>
-      <div>
-        <div ref={modelRef}>
-          <Model
-            paint={paint}
-            setPaint={setPaint}
-          />
+      <Container style={conditionalStyle}>
+        <div style={caro ? {display: 'block'} : {display: 'none'}}>
+          <Carousel back={back} images={images} index={index} setIndex={setIndex} caro={caro} />
         </div>
+        <Switch>
+          <Buttons style={
+            paint ?
+              {color: 'rgb(200, 200, 200)', transition: 'all 0.4 ease'} :
+              {color: 'rgb(130, 130, 130)', transition: 'all 0.4 ease'}
+            }
+          >
+            <Button onClick={modelScroll}>ZERO SR/F</Button>
+            <Button onClick={galleryScroll}>GALLERY</Button>
+            <Button onClick={infoScroll}>TECH</Button>
+            <Button onClick={specsScroll}>SPECS</Button>
+            <Button onClick={pricingScroll}>BUILD</Button>
+          </Buttons>
+        </Switch>
         <div>
-          <Video
-            setGalleryView={setGalleryView}
-          />
+          <div ref={modelRef}>
+            <Model
+              paint={paint}
+              setPaint={setPaint}
+            />
+          </div>
+          <div>
+            <Video
+              setGalleryView={setGalleryView}
+            />
+          </div>
+          <div style={{ background: 'rgb(20, 20, 20)', height: '100px' }}/>
+          <div ref={galleryRef}>
+            <Gallery galleryView={galleryView} setCaro={setCaro} setIndex={setIndex} />
+          </div>
+          <div ref={infoRef}><Info setSpecView={setSpecView} openPower={openPower} /></div>
+          <div ref={specsRef}><Specs specView={specView} /></div>
+          <div ref={pricingRef}><Pricing paint={paint} setPaint={setPaint} /></div>
         </div>
-        <div style={{ background: 'rgb(20, 20, 20)', height: '100px' }}/>
-        <div ref={galleryRef}>
-          <Gallery galleryView={galleryView} setCaro={setCaro} setIndex={setIndex} />
-        </div>
-        <div ref={infoRef}><Info setSpecView={setSpecView} openPower={openPower} /></div>
-        <div ref={specsRef}><Specs specView={specView} /></div>
-        <div ref={pricingRef}><Pricing paint={paint} setPaint={setPaint} /></div>
-      </div>
-    </Container>
+      </Container>
     </div>
   )
 };

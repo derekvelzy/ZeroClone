@@ -26,6 +26,7 @@ const Image = ({ galleryView, jpg, webp, height, width, setCaro, position, setIn
           {display: 'none'}}
       >
         <Plus
+          role="plus button"
           onMouseEnter={() => {
             setHover(1.03)
             setShrink(0.85)
@@ -60,6 +61,7 @@ const Image = ({ galleryView, jpg, webp, height, width, setCaro, position, setIn
           }}
         >
           <source
+            alt={`gallery ${webp}`}
             style={{
               height: `${height}vh`,
               width: `${width}vw`,
@@ -72,6 +74,7 @@ const Image = ({ galleryView, jpg, webp, height, width, setCaro, position, setIn
             srcSet={webp}
           />
           <img
+            alt={`gallery ${jpg}`}
             style={{
               height: `${height}vh`,
               width: `${width}vw`,

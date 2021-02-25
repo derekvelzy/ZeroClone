@@ -1,9 +1,5 @@
 import React, { useRef, useEffect } from "react"
-// import { graphql, useStaticQuery } from 'gatsby'
-import { animated, useSpring } from "react-spring";
 import styled from 'styled-components';
-
-const calc = (o) => `translateX(${o * 0.2}px)`;
 
 const Video = ({ setGalleryView }) => {
   const ref = useRef();
@@ -23,6 +19,7 @@ const Video = ({ setGalleryView }) => {
   return (
     <Container ref={ref}>
       <iframe
+        title="Zero SRF Trailer"
         style={{width: "100vw", height: "100vh"}}
         src="https://www.youtube.com/embed/0-GvTyxbFGQ"
         frameBorder="0"

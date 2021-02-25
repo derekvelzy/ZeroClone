@@ -21,8 +21,11 @@ const Info = ({ setSpecView, openPower }) => {
   return (
     <Container ref={ref}>
       <picture>
-        <BGSource srcSet="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/desert.jpg" />
-        <BG src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/desert.webp" />
+        <BGSource
+          alt="desert webp"
+          srcSet="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/desert.webp"
+        />
+        <BG alt="desert" src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/desert.jpg" />
       </picture>
       <Desc>
         <Title>EFFORTLESS POWER</Title>

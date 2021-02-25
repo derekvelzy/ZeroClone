@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { animated, useTransition, config } from "react-spring";
+import { animated, useTransition } from "react-spring";
 
-const Carousel = ({ back, images, index, setIndex }) => {
+const Carousel = ({ back, images, index, setIndex, caro }) => {
 
   const forward = () => {
     if (index === images.length - 1) {
@@ -29,11 +29,7 @@ const Carousel = ({ back, images, index, setIndex }) => {
 
   return (
     <Container>
-      <Close
-        onClick={() => back()}
-      >
-        +
-      </Close>
+      <Close onClick={() => back()}>+</Close>
       <Images>
         <Back onClick={() => backward()}>{'<'}</Back>
         {transitions.map(({ item, props, key }) => (
@@ -48,9 +44,9 @@ const Carousel = ({ back, images, index, setIndex }) => {
               width: '100vw',
             }}
           >
-            <picture>
-              <ImgSource src={item.webp} />
-              <Img src={item.jpg} />
+            <picture style={caro ? {display: 'block'} : {display: 'none'}}>
+              <ImgSource alt="carousel source" srcSet={item.webp} />
+              <Img alt="carousel image" src={item.jpg} />
             </picture>
           </animated.div>
         ))}

@@ -1,9 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { animated, useSpring } from "react-spring";
-import {Parallax, ParallaxLayer} from 'react-spring/renderprops-addons';
-
-const calc = (o) => `translateY(${o * 0.2}px)`;
+import { Parallax, ParallaxLayer } from 'react-spring/renderprops-addons';
 
 const Power = ({ closePower, power }) => {
 
@@ -14,45 +11,60 @@ const Power = ({ closePower, power }) => {
         <Content>
           <Parallax pages={3.3} style={{width: '80vw'}}>
             <ItemParallax>
-              <ParallaxLayer speed={1}>
-                <picture>
+              <ParallaxLayer speed={1.2}>
+                <picture style={power ? {display: 'block'} : {display: 'none'}}>
                   <source
+                    alt="battery webp"
                     style={{width: '37vw', marginLeft: '20vw', marginTop: '50px'}}
                     srcSet="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/battery.webp"
+                    loading="lazy"
                   />
                   <img
+                    alt="battery"
                     style={{width: '37vw', marginLeft: '20vw', marginTop: '50px'}}
-                    src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/battery.jpg"
+                    src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/battery.jpg"     loading="lazy"
                   />
                 </picture>
                 <picture>
                   <source
-                    style={{width: '77vw', marginLeft: '2vw', marginTop: '200px'}}
+                    alt="motor webp"
+                    style={{width: '77vw', marginLeft: '2vw', marginTop: '260px'}}
                     srcSet="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/motor.webp"
+                    loading="lazy"
                   />
                   <img
-                    style={{width: '77vw', marginLeft: '2vw', marginTop: '200px'}}
+                    alt="motor"
+                    style={{width: '77vw', marginLeft: '2vw', marginTop: '260px'}}
                     src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/motor.jpg"
+                    loading="lazy"
                   />
                 </picture>
-                <picture>
+                <picture style={power ? {display: 'block'} : {display: 'none'}}>
                   <source
-                    style={{width: '50vw', height: '100vh', objectFit: 'cover', marginTop: '660px'}}
+                    alt="charging webp"
+                    style={{width: '50vw', height: '100vh', objectFit: 'cover', marginTop: '800px'}}
                     srcSet="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/charging.webp"
+                    loading="lazy"
                   />
                   <img
-                    style={{width: '50vw', height: '100vh', objectFit: 'cover', marginTop: '660px'}}
+                    alt="charging"
+                    style={{width: '50vw', height: '100vh', objectFit: 'cover', marginTop: '800px'}}
                     src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/charging.jpg"
+                    loading="lazy"
                   />
                 </picture>
-                <picture>
+                <picture style={power ? {display: 'block'} : {display: 'none'}}>
                   <source
-                    style={{width: '42vw', marginTop: '120px', marginLeft: '20vw'}}
+                    alt="pivot frame webp"
+                    style={{width: '42vw', marginTop: '270px', marginLeft: '20vw'}}
                     srcSet="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/frame.webp"
+                    loading="lazy"
                   />
                   <img
-                    style={{width: '42vw', marginTop: '120px', marginLeft: '20vw'}}
+                    alt="pivot frame"
+                    style={{width: '42vw', marginTop: '270px', marginLeft: '20vw'}}
                     src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/frame.jpg"
+                    loading="lazy"
                   />
                 </picture>
               </ParallaxLayer>
@@ -91,9 +103,17 @@ const Power = ({ closePower, power }) => {
             </ParallaxLayer>
             <Footer>
               <FootText>EFFORTLESS CONTROLL</FootText>
-              <picture>
-                <MojSource srcSet="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/mojave.webp" />
-                <Moj src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/mojave.jpg" />
+              <picture style={power ? {display: 'block'} : {display: 'none'}}>
+                <MojSource
+                  alt="mojave webp"
+                  srcSet="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/mojave.webp"
+                  loading="lazy"
+                />
+                <Moj
+                  alt="mojave"
+                  src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/mojave.jpg"
+                  loading="lazy"
+                />
               </picture>
             </Footer>
           </Parallax>
@@ -225,13 +245,6 @@ const MojSource = styled.source`
   height: 165px;
   filter: brightness(0.3);
   z-index: 120;
-`
-const MotorParallax = styled.div`
-  display: flex;
-  align-items: flex-start;
-  width: 60vw;
-  position: absolute;
-  z-index: 110;
 `
 const Overlay = styled.div`
   z-index: 101;

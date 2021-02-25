@@ -1,9 +1,9 @@
-import React, { useRef, useEffect, useState } from "react"
+import React, { useRef } from "react"
 import { animated, useSpring } from "react-spring";
 import styled from 'styled-components';
-import Video from './video.js';
-import Image from './Image.js';
+import loadable from '@loadable/component';
 import { images } from '../pages/index.js';
+const Image = loadable(() => import('./image.js'));
 
 const Gallery = ({ galleryView, setCaro, setIndex }) => {
   const ref = useRef();
@@ -126,30 +126,6 @@ const Container = styled.div`
   justify-content: center;
   height: 100vh;
   background: rgb(20, 20, 20);
-`
-const MBLS = styled.source`
-  height: 18vh;
-  width: 19.5vw;
-  object-fit: cover;
-  transition: all 0.3s ease;
-`
-const MBL = styled.img`
-  height: 18vh;
-  width: 19.5vw;
-  object-fit: cover;
-  transition: all 0.3s ease;
-`
-const MT = styled.img`
-  height: 18vh;
-  width: 40vw;
-  object-fit: cover;
-  transition: all 0.3s ease;
-`
-const MTS = styled.source`
-  height: 18vh;
-  width: 40vw;
-  object-fit: cover;
-  transition: all 0.3s ease;
 `
 const Top = styled.div`
   display: flex;

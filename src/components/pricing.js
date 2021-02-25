@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from "react"
-import { animated, useSpring, interpolate } from "react-spring";
+import React, { useEffect, useState } from "react"
+import { animated, useSpring } from "react-spring";
 import styled from 'styled-components';
 
 const Pricing = ({ paint, setPaint }) => {
@@ -73,12 +73,12 @@ const Pricing = ({ paint, setPaint }) => {
     delay: !paint ? 400 : 0
   });
 
-  const blueWheelPropsOpac = useSpring({
-    opacity: !paint ? '1' : '0',
-    from: { opacity: '1' },
-    config: {duration: 0},
-    delay: 400
-  });
+  // const blueWheelPropsOpac = useSpring({
+  //   opacity: !paint ? '1' : '0',
+  //   from: { opacity: '1' },
+  //   config: {duration: 0},
+  //   delay: 400
+  // });
 
   const grayWheelProps = useSpring({
     marginLeft: !paint ? '-205px' : '202px',
@@ -87,12 +87,12 @@ const Pricing = ({ paint, setPaint }) => {
     delay: !paint ? 0 : 400
   });
 
-  const grayWheelPropsOpac = useSpring({
-    opacity: !paint ? '0' : '1',
-    from: { opacity: '0' },
-    config: {duration: 0},
-    delay: 400
-  });
+  // const grayWheelPropsOpac = useSpring({
+  //   opacity: !paint ? '0' : '1',
+  //   from: { opacity: '0' },
+  //   config: {duration: 0},
+  //   delay: 400
+  // });
 
   const blueShadowProps = useSpring({
     marginLeft: !paint ? '-300px' : '-685px',
@@ -134,22 +134,30 @@ const Pricing = ({ paint, setPaint }) => {
       <div>
         <animated.div style={{...blueFrameProps, ...blueFramePropsOpac}}>
           <Frame
+            alt="mint frame"
+            loading="lazy"
             src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/srfFrame.png"
           />
         </animated.div>
-        <animated.div style={{...blueWheelProps, ...blueWheelPropsOpac}}>
+        <animated.div style={{...blueWheelProps, ...blueFramePropsOpac}}>
           <Wheel
+            alt="wheel"
+            loading="lazy"
             style={!paint ? {transform: 'rotate(90deg)', transition: 'all 0.4s linear', transitionDelay: '0.4s'} : {transform: 'rotate(-20deg)', transition: 'all 0.4s linear'}}
             src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/srfWheel.png"
           />
         </animated.div>
         <animated.div style={{...grayFrameProps, ...grayFramePropsOpac}}>
           <Frame
+            alt="gray frame"
+            loading="lazy"
             src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/srfGrayFrame.png"
           />
         </animated.div>
         <animated.div style={{...grayWheelProps, ...grayFramePropsOpac}}>
           <Wheel
+            alt="gray wheel"
+            loading="lazy"
             style={paint ? {transform: 'rotate(90deg)', transition: 'all 0.4s linear', transitionDelay: '0.4s'} : {transform: 'rotate(-20deg)', transition: 'all 0.4s linear'}}
             src="https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/zero/srfGrayWheel.png"
           />
