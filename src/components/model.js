@@ -169,7 +169,7 @@ const SRF = styled.div`
   color: white;
 `
 const Svg = styled.img`
-  z-index: 130;
+  z-index: 9;
   width: 120px;
   position: absolute;
   left: 40px;
