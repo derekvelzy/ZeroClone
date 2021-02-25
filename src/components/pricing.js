@@ -28,69 +28,69 @@ const Pricing = ({ paint, setPaint }) => {
 
   const firstProps = useSpring({
     number: first,
-    from: {number: 0},
-    config: {duration: 400},
+    from: { number: 0 },
+    config: { duration: 400 },
   });
 
   const lastProps = useSpring({
     number: last,
-    from: {number: 0},
-    config: {duration: 400},
+    from: { number: 0 },
+    config: { duration: 400 },
   });
 
   const blueFrameProps = useSpring({
     marginLeft: !paint ? '-500px' : '-910px',
     from: { marginLeft: '-500px' },
-    config: {duration: 400},
+    config: { duration: 400 },
     delay: !paint ? 400 : 0
   });
 
   const blueFramePropsOpac = useSpring({
     opacity: !paint ? '1' : '0',
     from: { opacity: '1' },
-    config: {duration: 0},
+    config: { duration: 0 },
     delay: 400
   });
 
   const grayFrameProps = useSpring({
     marginLeft: !paint ? '-910px' : '-500px',
     from: { marginLeft: '-890px' },
-    config: {duration: 400},
+    config: { duration: 400 },
     delay: !paint ? 0 : 400
   });
 
   const grayFramePropsOpac = useSpring({
     opacity: !paint ? '0' : '1',
     from: { opacity: '0' },
-    config: {duration: 0},
+    config: { duration: 0 },
     delay: 400
   });
 
   const blueWheelProps = useSpring({
     marginLeft: !paint ? '202px' : '-205px',
     from: { marginLeft: '202px' },
-    config: {duration: 400},
+    config: { duration: 400 },
     delay: !paint ? 400 : 0
   });
 
   const grayWheelProps = useSpring({
     marginLeft: !paint ? '-205px' : '202px',
     from: { marginLeft: '-205px' },
-    config: {duration: 400},
+    config: { duration: 400 },
     delay: !paint ? 0 : 400
   });
 
   const blueShadowProps = useSpring({
     marginLeft: !paint ? '-300px' : '-685px',
     from: { marginLeft: '-300px' },
-    config: {duration: 400},
+    config: { duration: 400 },
     delay: !paint ? 400 : 0,
   });
 
   const grayShadowProps = useSpring({
     marginLeft: !paint ? '-685px' : '-300px',
     from: { marginLeft: '-685px' },
-    config: {duration: 400},
+    config: { duration: 400 },
     delay: !paint ? 0 : 400,
   });
 

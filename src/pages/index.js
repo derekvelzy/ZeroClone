@@ -6,6 +6,7 @@ import loadable from '@loadable/component';
 const Model = loadable(() => import('../components/model.js'));
 const Video = loadable(() => import('../components/video.js'));
 const Gallery = loadable(() => import('../components/gallery.js'));
+const Horizontal = loadable(() => import('../components/horizontal.js'));
 const Info = loadable(() => import('../components/info.js'));
 const Specs = loadable(() => import('../components/specs.js'));
 const Pricing = loadable(() => import('../components/pricing.js'));
@@ -140,7 +141,8 @@ const IndexPage = () => {
           <div ref={galleryRef}>
             <Gallery galleryView={galleryView} setCaro={setCaro} setIndex={setIndex} />
           </div>
-          <div ref={infoRef}><Info setSpecView={setSpecView} openPower={openPower} /></div>
+          <div ref={infoRef}><Horizontal /></div>
+          <div><Info setSpecView={setSpecView} openPower={openPower} /></div>
           <div ref={specsRef}><Specs specView={specView} /></div>
           <div ref={pricingRef}><Pricing paint={paint} setPaint={setPaint} /></div>
         </div>
