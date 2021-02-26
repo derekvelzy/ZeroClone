@@ -1,14 +1,14 @@
 # Zero Clone #
-<!-- [Link to Demo Video on Youtube](https://www.youtube.com/watch?v=strBvuNb_ls) -->
+[Link to Demo Video on Youtube](https://www.youtube.com/watch?v=f0o3FE_7hbg)
 
 ## Overview ##
 Clone of Zero Motorcycle's SR/F Model page.
 
-<!-- ## Screenshots ## -->
-<!-- ![Hindsight Home](https://frisbee-images.s3-us-west-1.amazonaws.com/Hindsight_Home.png)
-![Hindsight Buy/Sell](https://frisbee-images.s3-us-west-1.amazonaws.com/Hindsight_buysell.png)
-![Hindsight Search](https://frisbee-images.s3-us-west-1.amazonaws.com/Hinsight_search.png)
-![Hindsight News](https://frisbee-images.s3-us-west-1.amazonaws.com/Hinsight_news.png) -->
+## Screenshots ##
+![Landing/Model Page](https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/Screen+Shot+2021-02-25+at+7.01.21+PM.png)
+![Gallery](https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/Screen+Shot+2021-02-25+at+7.01.34+PM.png)
+![Horizontal Scrolling Carousel](https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/Screen+Shot+2021-02-25+at+7.01.43+PM.png)
+![Build & Pricing](https://derekvelzy-website-images.s3-us-west-1.amazonaws.com/Screen+Shot+2021-02-25+at+7.01.55+PM.png)
 
 ## Features ##
 - Fixed menu bar scrolls to different parts of page.
